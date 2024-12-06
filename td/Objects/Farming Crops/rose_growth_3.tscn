@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3y82hohgxpr8"]
+
+[ext_resource type="Texture2D" uid="uid://dmlsbb0rpdrj" path="res://assets/crops/crops.png" id="1_bkrps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qub41"]
+atlas = ExtResource("1_bkrps")
+region = Rect2(30.1863, 290.701, 16.9119, 15.7845)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jde53"]
+radius = 5.0
+
+[node name="RoseStage2" type="StaticBody2D"]
+collision_layer = 512
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_qub41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jde53")

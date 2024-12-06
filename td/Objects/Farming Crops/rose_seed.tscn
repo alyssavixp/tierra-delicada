@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6n07kyb7tcla"]
+
+[ext_resource type="Texture2D" uid="uid://dmlsbb0rpdrj" path="res://assets/crops/crops.png" id="1_fn80o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qub41"]
+atlas = ExtResource("1_fn80o")
+region = Rect2(0.501305, 287.932, 15.7845, 16.6865)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljmdn"]
+size = Vector2(16, 16)
+
+[node name="RoseSeed" type="Area2D"]
+collision_layer = 512
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_qub41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ljmdn")
