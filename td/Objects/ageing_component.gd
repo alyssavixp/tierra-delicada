@@ -31,11 +31,15 @@ signal age_threshold_reached(new_scene : Node2D)
 @export var age_threshold = 1.0
 @export var next_scene : PackedScene
 
+const group_name = "AgeingComponent"
+
 var _threshold_reached = false
 
 func _ready():
 	if(target == null):
 		target = get_parent()
+		
+	add_to_group(group_name)
 
 func _create_next_scene() -> Node2D:
 	var instance : Node2D = next_scene.instantiate()
