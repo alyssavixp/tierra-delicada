@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://bsk4yta2ey683"]
+[gd_scene load_steps=6 format=4 uid="uid://bsk4yta2ey683"]
 
 [ext_resource type="Texture2D" uid="uid://db1dmtd5nklbs" path="res://assets/tiles/tiles.png" id="1_6hdgv"]
 [ext_resource type="PackedScene" uid="uid://dxe1socno2l0y" path="res://characters/greytest.tscn" id="2_xcv4t"]
+[ext_resource type="PackedScene" uid="uid://c6n07kyb7tcla" path="res://Objects/Farming Crops/rose_seed.tscn" id="3_xox8s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0jsk"]
 texture = ExtResource("1_6hdgv")
@@ -1692,3 +1693,7 @@ position = Vector2(535, 178)
 [node name="Camera2D" type="Camera2D" parent="grey"]
 position = Vector2(0, 3)
 zoom = Vector2(2, 2)
+
+[node name="RoseSeed" parent="." instance=ExtResource("3_xox8s")]
+
+[editable path="RoseSeed"]

@@ -4,13 +4,13 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qub41"]
 atlas = ExtResource("1_bkrps")
-region = Rect2(30.1863, 290.701, 16.9119, 15.7845)
+region = Rect2(47.3237, 289.348, 15.7845, 16.2355)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jde53"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqt44"]
 radius = 5.0
 
-[node name="RoseStage2" type="StaticBody2D"]
-collision_layer = 512
+[node name="RoseStage3" type="StaticBody2D"]
+collision_layer = 513
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,4 +18,4 @@ position = Vector2(0, -5)
 texture = SubResource("AtlasTexture_qub41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_jde53")
+shape = SubResource("CircleShape2D_oqt44")
