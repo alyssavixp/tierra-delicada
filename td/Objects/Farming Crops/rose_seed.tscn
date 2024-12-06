@@ -9,7 +9,7 @@ atlas = ExtResource("1_fn80o")
 region = Rect2(0.501305, 287.932, 15.7845, 16.6865)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljmdn"]
-size = Vector2(16, 16)
+size = Vector2(14, 16)
 
 [node name="RoseSeed" type="Area2D"]
 collision_layer = 512
