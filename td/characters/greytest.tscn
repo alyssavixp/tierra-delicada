@@ -15,6 +15,7 @@ func _ready():
 	# Initialize the target to the player's starting position
 	target_x = position.x
 	target_y = position.y
+	add_to_group(\"player\")
 
 func _input(event):
 	# If the mouse is clicked, set the target position

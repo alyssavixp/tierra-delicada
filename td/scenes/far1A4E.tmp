@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bsk4yta2ey683"]
+[gd_scene load_steps=10 format=4 uid="uid://bsk4yta2ey683"]
 
 [ext_resource type="Script" path="res://scenes/farm.gd" id="1_jhwi8"]
 [ext_resource type="PackedScene" uid="uid://rysqu6k6ukq8" path="res://scenes/water_animation.tscn" id="1_n2unc"]
@@ -8,16 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://boty6qk5sa8ly" path="res://soil.tscn" id="3_y3qd6"]
 [ext_resource type="TileSet" uid="uid://cirhfu0hobqc5" path="res://scenes/barrier.tres" id="5_fb315"]
 [ext_resource type="PackedScene" uid="uid://dsq2gr72l7y6l" path="res://chest.tscn" id="8_iar1l"]
-[ext_resource type="PackedScene" uid="uid://fhuhrlw7axnc" path="res://chest_second.tscn" id="9_kqh0n"]
-[ext_resource type="Script" path="res://time_system.gd" id="10_lob2u"]
-[ext_resource type="Script" path="res://date_time.gd" id="11_gqvun"]
-
-[sub_resource type="Resource" id="Resource_p26la"]
-script = ExtResource("11_gqvun")
-seconds = 0
-minutes = 0
-hours = 0
-days = 0
+[ext_resource type="PackedScene" uid="uid://fhuhrlw7axnc" path="res://chest_second.tscn" id="9_ychw4"]
 
 [node name="farm" type="Node2D"]
 script = ExtResource("1_jhwi8")
@@ -50,14 +41,10 @@ zoom = Vector2(2, 2)
 visible = false
 position = Vector2(338, 134)
 
-[node name="Chest1" parent="." instance=ExtResource("8_iar1l")]
+[node name="Chest" parent="." instance=ExtResource("8_iar1l")]
 position = Vector2(76, 16)
 
-[node name="Chest second" parent="." instance=ExtResource("9_kqh0n")]
-position = Vector2(-31, 121)
-
-[node name="TimeSystem" type="Node" parent="."]
-script = ExtResource("10_lob2u")
-date_time = SubResource("Resource_p26la")
+[node name="Chest second" parent="." instance=ExtResource("9_ychw4")]
+position = Vector2(-26, 128)
 
 [editable path="RoseSeed"]

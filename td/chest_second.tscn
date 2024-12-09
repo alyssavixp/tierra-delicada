@@ -1,0 +1,160 @@
+[gd_scene load_steps=20 format=3 uid="uid://fhuhrlw7axnc"]
+
+[ext_resource type="Script" path="res://chest_second.gd" id="1_vhp4d"]
+[ext_resource type="Texture2D" uid="uid://dkjeyqfn2w3ib" path="res://assets/Treasures/treasure chests.png" id="2_m8fui"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v0d6"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axkii"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ycyu"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrq63"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 352, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewllo"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 384, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufwun"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 416, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcsse"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 448, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkyi5"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq30g"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wipr"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c01ew"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsasw"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt1d5"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rugkd"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldcg3"]
+atlas = ExtResource("2_m8fui")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhhwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v0d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axkii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ycyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrq63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewllo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufwun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcsse")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkyi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq30g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wipr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c01ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsasw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt1d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rugkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldcg3")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evt7n"]
+size = Vector2(21, 18.7742)
+
+[node name="Chest second" type="Node2D"]
+position = Vector2(-70, 123)
+script = ExtResource("1_vhp4d")
+
+[node name="Sec chest1" type="Node2D" parent="."]
+position = Vector2(1022, 369.75)
+scale = Vector2(1.5625, 1.29688)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sec chest1"]
+sprite_frames = SubResource("SpriteFrames_xhhwa")
+animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="Sec chest1/AnimatedSprite2D"]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sec chest1/AnimatedSprite2D/Area2D"]
+position = Vector2(1.5, -1.12915)
+shape = SubResource("RectangleShape2D_evt7n")
+
+[node name="Sec chest2" type="Node2D" parent="."]
+position = Vector2(1022, 369.75)
+scale = Vector2(1.5625, 1.29688)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sec chest2"]
+position = Vector2(85.76, -353.735)
+sprite_frames = SubResource("SpriteFrames_xhhwa")
+animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="Sec chest2/AnimatedSprite2D"]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sec chest2/AnimatedSprite2D/Area2D"]
+position = Vector2(1.64, -0.578322)
+shape = SubResource("RectangleShape2D_evt7n")
