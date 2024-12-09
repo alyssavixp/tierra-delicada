@@ -72,6 +72,4 @@ offset_left = -32.0
 offset_right = 32.0
 grow_horizontal = 2
 
-[connection signal="updated" from="TimeSystem" to="CanvasLayer/TimeGui" method="_on_time_system_updated"]
-
 [editable path="RoseSeed"]
