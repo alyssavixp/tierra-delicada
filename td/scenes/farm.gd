@@ -55,3 +55,9 @@ func _process(delta):
 	# Check for the "plant_seed" action (you must configure this in Input Map)
 	if Input.is_action_just_pressed("plant_seed"):  # Replace with your desired action
 		plant_seed_at(player_position)  # Call planting function with the player's position
+
+
+func is_player_over_soil(player_position: Vector2) -> bool:
+	var cell_coords = soil_layer.world_to_map(player_position)
+	var soil_cell = soil_layer.get_cellv(cell_coords)
+	return soil_cell != null and soil_layer.get_node_at_position(player_position).is_empty
