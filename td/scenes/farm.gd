@@ -1,7 +1,7 @@
 extends Node
 
 # References to specific TileMapLayers
-@onready var player: CharacterBody2D = $player  # Reference the Player node
+@onready var player: CharacterBody2D = $Player  # Reference the Player node
 @onready var soil_layer: TileMapLayer = $soil # Will dynamically find the Soil TileMapLayer using groups
 
 func _ready():
@@ -36,5 +36,5 @@ func _test_player_soil_interaction():
 	# Convert the player's position to tile coordinates in the Soil TileMapLayer
 	var cell_size_x = soil_layer.cell_size.x
 	var cell_size_y = soil_layer.cell_size.y
-	var tile_x = int(floor(player_x / cell_size_x))
-	var tile_y = int(floor(player_y / cell_size_y))
+	var _tile_x = int(floor(player_x / cell_size_x))
+	var _tile_y = int(floor(player_y / cell_size_y))
