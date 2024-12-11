@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://trlpvn72l200"]
+[gd_scene load_steps=126 format=3 uid="uid://trlpvn72l200"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_8suym"]
 [ext_resource type="Texture2D" uid="uid://ty2cj4cre1nu" path="res://assets/char_model/jump/char2_jump.png" id="2_cc8s1"]
@@ -397,35 +397,31 @@ region = Rect2(160, 0, 32, 32)
 atlas = ExtResource("5_fuge6")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xkv7s"]
-atlas = ExtResource("7_36jmr")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bit1v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0iq4"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(288, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m0l7g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh00q"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(320, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yourj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlqse"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(352, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cfthd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbca"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(384, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bcws"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohcl4"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(416, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7s25o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ky2"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(448, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfwwc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkpfb"]
 atlas = ExtResource("7_36jmr")
 region = Rect2(480, 0, 32, 32)
 
@@ -444,28 +440,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xkv7s")
+"texture": SubResource("AtlasTexture_i0iq4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bit1v")
+"texture": SubResource("AtlasTexture_gh00q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m0l7g")
+"texture": SubResource("AtlasTexture_jlqse")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yourj")
+"texture": SubResource("AtlasTexture_ugbca")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cfthd")
+"texture": SubResource("AtlasTexture_ohcl4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bcws")
+"texture": SubResource("AtlasTexture_y4ky2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7s25o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfwwc")
+"texture": SubResource("AtlasTexture_hkpfb")
 }],
 "loop": true,
 "name": &"walk_down",
@@ -859,42 +852,42 @@ script = ExtResource("1_8suym")
 
 [node name="body" type="AnimatedSprite2D" parent="." groups=["Player", "SoilLayer"]]
 sprite_frames = SubResource("SpriteFrames_ajh8f")
-animation = &"idle_down"
+animation = &"walk_up"
 autoplay = "idle_down"
 
 [node name="overalls" type="AnimatedSprite2D" parent="body" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_ng3c4")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="pants" type="AnimatedSprite2D" parent="body/overalls" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_i2eod")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="shoes" type="AnimatedSprite2D" parent="body/overalls/pants" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_3x1uh")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="blush" type="AnimatedSprite2D" parent="body/overalls/pants/shoes" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_d811u")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="eyes" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_x5trh")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="hair" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_lwfrs")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="hat" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes/hair" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_gl3ao")
-animation = &"idle_down"
+animation = &"walk_down"
 autoplay = "idle_down"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
