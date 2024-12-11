@@ -1,27 +1,32 @@
 extends TileMapLayer
 
-# State to track if the soil is empty or has a seed planted
-var is_empty: bool = true  # The soil starts empty by default
+# Metadata for soil tiles
+var soil_states = []  # Use an array to store states (e.g., is_empty)
 
-# Function to plant a seed on the soil
-func plant_seed(seed_scene: PackedScene) -> bool:
-	if is_empty:
-		# Instantiate the seed scene
-		var seed_instance = seed_scene.instantiate()
-		add_child(seed_instance)
+func _ready():
+	# Initialize soil states for each tile
+	for x in range(0, get_used_rect().size.x):
+		for y in range(0, get_used_rect().size.y):
+			soil_states.append(true)  # All soil tiles start as empty
 
-		# Align the seed to the center of the soil
-		seed_instance.position = Vector2.ZERO  # Adjust if soil isn't at (0, 0)
-		
-		# Set the soil to full
-		is_empty = false
+func is_tile_empty(x: int, y: int) -> bool:
+	# Check if a tile at (x, y) is empty
+	var index = _get_tile_index(x, y)
+	return soil_states[index]
+
+func plant_seed_at(x: int, y: int) -> bool:
+	# Attempt to plant a seed at (x, y)
+	var index = _get_tile_index(x, y)
+	if soil_states[index]:  # If tile is empty
+		soil_states[index] = false  # Mark as full
 		return true  # Planting successful
-	else:
-		return false  # Soil is already full
+	return false  # Tile is already full
 
-# Function to clear the soil (optional, e.g., for harvesting)
-func clear_soil():
-	for child in get_children():
-		if child != self:
-			child.queue_free()
-	is_empty = true  # Reset the soil to empty
+func clear_tile(x: int, y: int):
+	# Clear the soil at (x, y)
+	var index = _get_tile_index(x, y)
+	soil_states[index] = true  # Mark as empty
+
+# Utility function to calculate the 1D index from 2D coordinates
+func _get_tile_index(x: int, y: int) -> int:
+	return y * get_used_rect().size.x + x
