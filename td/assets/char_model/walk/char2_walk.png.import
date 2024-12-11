@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvjs38ti73we1"
-path="res://.godot/imported/Red-x-mark-transparent-background-1-Transparent-Images.png-2dbf6e45a6907638ed1247531b47ffa1.ctex"
+uid="uid://codel6uoeedsi"
+path="res://.godot/imported/char2_walk.png-c8486bb5f800c52d93990352bfe775a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/char_model/Red-x-mark-transparent-background-1-Transparent-Images.png"
-dest_files=["res://.godot/imported/Red-x-mark-transparent-background-1-Transparent-Images.png-2dbf6e45a6907638ed1247531b47ffa1.ctex"]
+source_file="res://assets/char_model/walk/char2_walk.png"
+dest_files=["res://.godot/imported/char2_walk.png-c8486bb5f800c52d93990352bfe775a3.ctex"]
 
 [params]
 

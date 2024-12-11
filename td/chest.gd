@@ -5,7 +5,6 @@ var is_open = false
 func _ready() -> void:
 	$AnimatedSprite2D.play('default')
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
