@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://trlpvn72l200"]
+[gd_scene load_steps=127 format=3 uid="uid://trlpvn72l200"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_8suym"]
 [ext_resource type="Texture2D" uid="uid://ty2cj4cre1nu" path="res://assets/char_model/jump/char2_jump.png" id="2_cc8s1"]
@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://onob7tplagx5" path="res://assets/char_model/walk/shoes_walk.png" id="9_n2sjg"]
 [ext_resource type="Texture2D" uid="uid://dvylbhvcrbsmp" path="res://assets/char_model/jump/extra_long_jump.png" id="9_si43g"]
 [ext_resource type="Texture2D" uid="uid://byam16a85skoh" path="res://assets/char_model/jump/hat_cowboy_jump.png" id="10_vajwr"]
+[ext_resource type="Texture2D" uid="uid://cqiba4x7l8sjn" path="res://assets/char_model/walk/blush_walk.png" id="11_vecoa"]
 [ext_resource type="Texture2D" uid="uid://xaoxf0m5xceh" path="res://assets/char_model/walk/extra_long_walk.png" id="13_jlev1"]
+[ext_resource type="Texture2D" uid="uid://djog1gda6i31t" path="res://assets/char_model/walk/eyes_walk.png" id="13_y36l3"]
 [ext_resource type="Texture2D" uid="uid://dyfx3mkmjtbq0" path="res://assets/char_model/walk/hat_cowboy_walk.png" id="15_uklmx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6ry8"]
@@ -554,6 +556,34 @@ region = Rect2(640, 0, 32, 32)
 atlas = ExtResource("7_4svjk")
 region = Rect2(672, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu6xg"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1056, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvm4k"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1088, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8lx8"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1120, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxouw"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1152, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaihy"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1184, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtihn"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1216, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjiv8"]
+atlas = ExtResource("11_vecoa")
+region = Rect2(1248, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d811u"]
 animations = [{
 "frames": [{
@@ -566,6 +596,32 @@ animations = [{
 "loop": true,
 "name": &"idle_down",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu6xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvm4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8lx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxouw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaihy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtihn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjiv8")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 14.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_644v0"]
@@ -575,6 +631,34 @@ region = Rect2(480, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_asfd5"]
 atlas = ExtResource("8_vrbuq")
 region = Rect2(512, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvpcn"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(800, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvkvk"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(832, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qtk4"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(864, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o87o"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(896, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0whax"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(928, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04kxh"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(960, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b5bk"]
+atlas = ExtResource("13_y36l3")
+region = Rect2(992, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x5trh"]
 animations = [{
@@ -588,6 +672,32 @@ animations = [{
 "loop": true,
 "name": &"idle_down",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvpcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvkvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qtk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o87o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0whax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04kxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b5bk")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 14.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oykkf"]
@@ -749,22 +859,22 @@ script = ExtResource("1_8suym")
 
 [node name="body" type="AnimatedSprite2D" parent="." groups=["Player", "SoilLayer"]]
 sprite_frames = SubResource("SpriteFrames_ajh8f")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="overalls" type="AnimatedSprite2D" parent="body" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_ng3c4")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="pants" type="AnimatedSprite2D" parent="body/overalls" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_i2eod")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="shoes" type="AnimatedSprite2D" parent="body/overalls/pants" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_3x1uh")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="blush" type="AnimatedSprite2D" parent="body/overalls/pants/shoes" groups=["Player"]]
@@ -779,12 +889,12 @@ autoplay = "idle_down"
 
 [node name="hair" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_lwfrs")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="hat" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes/hair" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_gl3ao")
-animation = &"walk_down"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
