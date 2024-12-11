@@ -56,11 +56,11 @@ The minimalist UI updates dynamically to display the flower count and progress. 
 ## Meet the Team
 
 ### **Alyssa Pena– Head Developer and Project Architect**
-[Alyssa's Website](https://alyssavixp.github.io/avixp/)
+-[Alyssa's Website](https://alyssavixp.github.io/avixp/)
 Alyssa leads the development and overall architecture of the project, ensuring all systems are modular, scalable, and cohesive. She designed the core gameplay mechanics, structured the roadmap, and provided the vision for the game's technical and gameplay foundation. Her role also includes managing the team and ensuring smooth integration of all components.
 
 ### **Tianyi Fan– Creative Director and Systems Strategist**
-[Tianyi's Github](https://github.com/TianyiFan2003)
+-[Tianyi's Github](https://github.com/TianyiFan2003)
 Tianyi conceptualized the original idea for the farming simulator and adapted it based on feedback to align with the project's goals. As the Creative Director and Systems Strategist, Tianyi did the initial research and developed the economic systems. He providing strategic direction for gameplay mechanics at the conception of the game. Tianyi is also responsible for final testing, balancing, and creating comprehensive documentation for the project.
 
 ### **Anthony Garcia– Gameplay Developer and Implementation Specialist**
