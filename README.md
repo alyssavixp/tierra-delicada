@@ -63,10 +63,6 @@ Alyssa leads the development and overall architecture of the project, ensuring a
 - [Tianyi's Github](https://github.com/TianyiFan2003)
 Tianyi conceptualized the original idea for the farming simulator and adapted it based on feedback to align with the project's goals. As the Creative Director and Systems Strategist, Tianyi did the initial research and developed the economic systems. He providing strategic direction for gameplay mechanics at the conception of the game. Tianyi is also responsible for final testing, balancing, and creating comprehensive documentation for the project.
 
-### **Anthony Garcia– Gameplay Developer and Implementation Specialist**
-- [Anthony's Github](https://github.com/antgarcia222)
-Anthony is responsible for implementing key gameplay features such as seed planting, growth cycles, and flower harvesting. He ensures the technical execution of the systems designed by Alyssa and Tianyi, translating their concepts into functional, well-integrated code.
-
 ---
 
 ## Roadmap and Schedule
