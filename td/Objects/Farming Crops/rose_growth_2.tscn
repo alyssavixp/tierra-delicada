@@ -24,5 +24,6 @@ shape = SubResource("CircleShape2D_jde53")
 
 [node name="AgeingComponent" type="Node" parent="."]
 script = ExtResource("2_wx35c")
+current_age = null
 age_threshold = 3.0
 next_scene = ExtResource("3_kmv0b")

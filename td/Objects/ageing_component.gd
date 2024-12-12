@@ -5,7 +5,7 @@ extends Node
 ## with a new scene after reaching an age_threshold
 
 signal age_changed(new_age : float, last_age : float)
-signal age_threshold_reached(new_scene : Node2D)
+signal age_threshold_reached(new_scene, seed_instance, tile_position)
 
 ## When set, is the scene that will be replaced with next_scene. Otherwise
 ## the direct parent will be used
@@ -23,7 +23,7 @@ signal age_threshold_reached(new_scene : Node2D)
 				if(next_scene != null):
 					new_scene = _create_next_scene()
 					
-				emit_signal("age_threshold_reached", new_scene)
+				emit_signal("age_threshold_reached", flower_scene_instance, self, Vector2(x,y))
 				_threshold_reached = true
 				target.queue_free()
 
@@ -46,3 +46,4 @@ func _create_next_scene() -> Node2D:
 	target.get_parent().set_child(instance)
 	instance.global_transform = target.global_transform
 	return instance
+	

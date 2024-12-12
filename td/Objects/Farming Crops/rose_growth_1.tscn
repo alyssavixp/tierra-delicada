@@ -23,5 +23,6 @@ shape = SubResource("RectangleShape2D_ljmdn")
 
 [node name="AgeingComponent" type="Node" parent="."]
 script = ExtResource("2_sho3x")
+current_age = null
 age_threshold = 2.0
 next_scene = ExtResource("3_r8wea")
