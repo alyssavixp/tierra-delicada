@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bsk4yta2ey683"]
+[gd_scene load_steps=12 format=4 uid="uid://bsk4yta2ey683"]
 
 [ext_resource type="Script" path="res://scenes/farm.gd" id="1_jhwi8"]
 [ext_resource type="PackedScene" uid="uid://rysqu6k6ukq8" path="res://scenes/water_animation.tscn" id="1_n2unc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c6n07kyb7tcla" path="res://Objects/Farming Crops/rose_seed.tscn" id="3_xox8s"]
 [ext_resource type="TileSet" uid="uid://dy2c10mt6tqvs" path="res://scenes/soil.tres" id="4_sr6o4"]
 [ext_resource type="Script" path="res://soil.gd" id="5_t8d1y"]
+[ext_resource type="PackedScene" uid="uid://ce85ufoixltvt" path="res://ui/time_ui.tscn" id="7_sdjww"]
 [ext_resource type="PackedScene" uid="uid://by7y6uoh8isrh" path="res://scenes/global_data.tscn" id="8_rcp01"]
 [ext_resource type="Script" path="res://scenes/global_data.gd" id="9_dgajp"]
 [ext_resource type="Script" path="res://scenes/ui_layer.gd" id="10_y6osa"]
@@ -37,7 +38,25 @@ position = Vector2(328, 168)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
+
+[node name="TimeGui" parent="Player" instance=ExtResource("7_sdjww")]
+offset_left = -143.0
+offset_top = -80.0
+offset_right = -54.0
+offset_bottom = -16.0
+scale = Vector2(0.369103, 0.4)
+
+[node name="UI Layer" type="CanvasLayer" parent="Player"]
+script = ExtResource("10_y6osa")
+
+[node name="Flower_Count_Label" type="Label" parent="Player/UI Layer"]
+offset_left = 46.0
+offset_top = 59.0
+offset_right = 86.0
+offset_bottom = 82.0
+scale = Vector2(1.41015, 1.69282)
+size_flags_vertical = 0
 
 [node name="RoseSeed" parent="." instance=ExtResource("3_xox8s")]
 position = Vector2(338, 134)
@@ -45,12 +64,6 @@ position = Vector2(338, 134)
 [node name="global data" parent="." instance=ExtResource("8_rcp01")]
 script = ExtResource("9_dgajp")
 
-[node name="UI Layer" type="CanvasLayer" parent="."]
-script = ExtResource("10_y6osa")
-
-[node name="Flower_Count_Label" type="Label" parent="UI Layer"]
-offset_right = 40.0
-offset_bottom = 23.0
-size_flags_vertical = 0
+[connection signal="destination_reached" from="Player" to="soil" method="_on_player_destination_reached"]
 
 [editable path="RoseSeed"]

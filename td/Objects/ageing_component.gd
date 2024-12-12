@@ -1,49 +1,59 @@
-class_name AgeingComponent
 extends Node
+class_name AgeingComponent
 
 ## Track object age and can replace target scene
 ## with a new scene after reaching an age_threshold
 
-signal age_changed(new_age : float, last_age : float)
+@warning_ignore("unused_signal")
+signal age_changed(new_age: float, last_age: float)
+@warning_ignore("unused_signal")
 signal age_threshold_reached(new_scene, seed_instance, tile_position)
 
-## When set, is the scene that will be replaced with next_scene. Otherwise
-## the direct parent will be used
-@export var target : Node2D
-@export var current_age = 0.0 :
+## Preloaded growth scenes
+@export var growth_scenes: Array = []
+	#preload("res://Objects/Farming Crops/rose_growth_1.tscn"),
+	#preload("res://Objects/Farming Crops/rose_growth_2.tscn"),
+	#preload("res://Objects/Farming Crops/rose_growth_3.tscn"),
+	#preload("res://Objects/Farming Crops/rose_growth_4.tscn"),
+	#preload("res://Objects/Farming Crops/rose_growth_harvest.tscn")
+#]
+
+@export var age_thresholds: Array = [5.0, 10.0, 15.0, 20.0, 25.0]  # Corresponding thresholds for growth stages
+@export var target_tile_position: Vector2 = Vector2.ZERO  # Tile position in the soil layer
+
+@export var target: Node2D
+@export var current_age: float = 0.0:
 	set(value):
-		if(current_age != value):
+		if current_age != value:
 			var last_age = current_age
 			current_age = value
 			emit_signal("age_changed", current_age, last_age)
 			
-			if(current_age >= age_threshold && _threshold_reached != true):
-				var new_scene : Node2D
-				
-				if(next_scene != null):
-					new_scene = _create_next_scene()
-					
-				emit_signal("age_threshold_reached", flower_scene_instance, self, Vector2(x,y))
+			if current_stage < growth_scenes.size() and current_age >= age_thresholds[current_stage]:
+				_transition_to_next_stage()
+			elif current_stage == growth_scenes.size():
 				_threshold_reached = true
-				target.queue_free()
-
-
-@export var age_threshold = 1.0
-@export var next_scene : PackedScene
+				emit_signal("age_threshold_reached", growth_scenes[current_stage - 1], self, target_tile_position)
 
 const group_name = "AgeingComponent"
-
-var _threshold_reached = false
+var current_stage: int = 0
+var _threshold_reached: bool = false
 
 func _ready():
-	if(target == null):
+	if target == null:
 		target = get_parent()
-		
-	add_to_group(group_name)
+	if growth_scenes.size() != age_thresholds.size():
+		print("Error: growth_scenes and age_thresholds must have the same length!")
+		return
+	_transition_to_stage(current_stage)
 
-func _create_next_scene() -> Node2D:
-	var instance : Node2D = next_scene.instantiate()
-	target.get_parent().set_child(instance)
-	instance.global_transform = target.global_transform
-	return instance
-	
+func _transition_to_next_stage():
+	current_stage += 1
+	if current_stage < growth_scenes.size():
+		_transition_to_stage(current_stage)
+
+func _transition_to_stage(stage: int):
+	var instance = growth_scenes[stage].instantiate()
+	#instance.position = position
+	get_parent().add_child(instance)
+	queue_free()

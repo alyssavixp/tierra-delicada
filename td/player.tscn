@@ -2434,7 +2434,7 @@ script = ExtResource("1_8suym")
 
 [node name="body" type="AnimatedSprite2D" parent="." groups=["Player", "SoilLayer"]]
 sprite_frames = SubResource("SpriteFrames_ajh8f")
-animation = &"idle_left"
+animation = &"idle_right"
 autoplay = "idle_down"
 
 [node name="overalls" type="AnimatedSprite2D" parent="body" groups=["Player"]]
@@ -2444,7 +2444,7 @@ autoplay = "idle_down"
 
 [node name="pants" type="AnimatedSprite2D" parent="body/overalls" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_i2eod")
-animation = &"idle_left"
+animation = &"walk_left"
 autoplay = "idle_down"
 
 [node name="shoes" type="AnimatedSprite2D" parent="body/overalls/pants" groups=["Player"]]

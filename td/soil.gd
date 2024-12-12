@@ -1,65 +1,70 @@
 extends TileMapLayer
+
 @export var rose_seed: PackedScene
+@export var growth_scenes: Array = [
+	preload("res://Objects/Farming Crops/rose_growth_1.tscn"),
+	preload("res://Objects/Farming Crops/rose_growth_2.tscn"),
+	preload("res://Objects/Farming Crops/rose_growth_3.tscn"),
+	preload("res://Objects/Farming Crops/rose_growth_4.tscn"),
+	preload("res://Objects/Farming Crops/rose_growth_harvest.tscn")
+]
 
 # Metadata for soil tiles
 var soil_states = []  # Use an array to store states (e.g., is_empty)
+var growth_progress = {}  # Dictionary to track growth stages for tiles
+var local_position 
+var will_plant = false
 
 func _ready():
 	# Initialize soil states for each tile
 	for x in range(0, get_used_rect().size.x):
 		for y in range(0, get_used_rect().size.y):
 			soil_states.append(true)  # All soil tiles start as empty
+			growth_progress[Vector2(x, y)] = 0  # Initial growth stage for each tile
 
-func is_tile_empty(x: int, y: int) -> bool:
-	# Check if a tile at (x, y) is empty
-	var index = _get_tile_index(x, y)
-	return soil_states[index]
+	# Connect to the time system
+	#var time_system = $"../TimeSystem"
+	#if time_system:
+		#time_system.connect("time_updated", self, "_on_time_updated")
 
-func tile_to_world(tile_x: int, tile_y: int) -> Vector2:
-	# Assuming 'cell_size' is the size of each tile
-	var cell_size = Vector2(32, 32)  # Update this with your actual tile size
-	return Vector2(tile_x * cell_size.x, tile_y * cell_size.y)
+func _input(event):
+	# If the mouse is clicked, set the target position
+	if event.is_action_pressed("click"):
+		var mouse_position = get_global_mouse_position()
+		local_position = to_local(mouse_position)
+		var tile = get_cell_tile_data(local_to_map(local_position))
+		if tile:
+			will_plant = true
+		else:
+			will_plant = false
+			prints(local_position, mouse_position)
 
+func _on_time_updated(date_time: Dictionary):
+	# Handle time updates to advance plant growth
+	for tile_pos in growth_progress.keys():
+		var current_stage = growth_progress[tile_pos]
 
-func plant_seed_at(x: int, y: int) -> bool:
-	# Attempt to plant a seed at (x, y)
-	var index = _get_tile_index(x, y)
-	if soil_states[index]:  # If tile is empty
-		soil_states[index] = false  # Mark as full
-		_plant_seed_instance(x,y)
-		return true # Planting successful
-	return false # tile is already full
+		## Check if the tile has a plant and advance its growth
+	##	if !soil_states[_get_tile_index(int(tile_pos.x), int(tile_pos.y))] and current_stage < growth_scenes.size() - 1:
+			## For simplicity, advance one stage every hour
+			#if date_time["hours"] % 1 == 0:  # Adjust growth frequency as needed
+				#current_stage += 1
+				#growth_progress[tile_pos] = current_stage
+#
+				## Replace the tile with the next growth scene
+				#_replace_tile_with_growth_scene(tile_pos, current_stage)
 
-func _plant_seed_instance(x: int, y: int):
-	var seed_instance = rose_seed.instance() #figure what to put instead of "rose_scene" since there will be mulitple seed scenes
-	var seed_position = tile_to_world(x,y) + Vector2(32,32)
-	seed_instance.global_position = seed_position
+func _replace_tile_with_growth_scene(tile_pos: Vector2, stage: int):
+	# Remove any existing plant instance and replace it with the new growth stage
+	var seed_instance = growth_scenes[stage].instantiate()
+	seed_instance.global_position = tile_pos #tile_to_map(tile_pos.x, tile_pos.y) + Vector2(16, 16)  # Center the instance
 	add_child(seed_instance)
-	get_parent().add_child(seed_instance)
-	
-	#Attaching the AgeingComponent to the seed instance
-	var ageing_component = AgeingComponent.new()
-	seed_instance.add_child(ageing_component)
-	ageing_component.target = seed_instance
-	ageing_component.connect("age_threshold_reached", "_on_age_threshold_reached", [Vector2(x, y)])
 
-func _on_age_threshold_reached(new_scene: Node2D, tile_position: Vector2):
-	# Assuming the new scene is the flower scene to be placed
-	var flower_instance = new_scene
-	var flower_position = tile_to_world(tile_position.x, tile_position.y) + Vector2(32, 32)  # Again assuming half the cell size
-	flower_instance.global_position = flower_position
-	add_child(flower_instance)
-	
-	# Update the tile's metadata to indicate it's no longer empty
-	var index = _get_tile_index(int(tile_position.x), int(tile_position.y))
-	soil_states[index] = false
+	if stage == growth_scenes.size() - 1:  # Final stage (harvestable)
+		print("Tile at", tile_pos, "is ready for harvest!")
 
 
-func clear_tile(x: int, y: int):
-	# Clear the soil at (x, y)
-	var index = _get_tile_index(x, y)
-	soil_states[index] = true  # Mark as empty
-
-# Utility function to calculate the 1D index from 2D coordinates
-func _get_tile_index(x: int, y: int) -> int:
-	return y * get_used_rect().size.x + x
+func _on_player_destination_reached() -> void:
+	if will_plant:
+		_replace_tile_with_growth_scene(local_position, 0)
+	pass # Replace with function body.

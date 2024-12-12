@@ -5,6 +5,7 @@ extends CharacterBody2D
 # Target position as separate x and y components
 var target_x: float = 0
 var target_y: float = 0
+signal destination_reached
 
 @onready var body: AnimatedSprite2D = $body  # Reference to the main body AnimatedSprite2D
 @onready var body_parts: Array = [
@@ -48,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		_update_animation(direction_x, direction_y)
 	else:  # Stop moving and set idle animation
 		_set_idle_animation()
+		destination_reached.emit()
 
 # Update animations based on the movement direction
 func _update_animation(direction_x: float, direction_y: float):

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6n07kyb7tcla"]
+[gd_scene load_steps=5 format=3 uid="uid://c6n07kyb7tcla"]
 
 [ext_resource type="Texture2D" uid="uid://dmlsbb0rpdrj" path="res://assets/crops/crops.png" id="1_fn80o"]
 [ext_resource type="Script" path="res://Objects/ageing_component.gd" id="2_38n63"]
-[ext_resource type="PackedScene" uid="uid://bb4sls1xetku3" path="res://Objects/Farming Crops/rose_growth_1.tscn" id="3_es10k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qub41"]
 atlas = ExtResource("1_fn80o")
@@ -23,6 +22,3 @@ shape = SubResource("RectangleShape2D_ljmdn")
 
 [node name="AgeingComponent" type="Node" parent="."]
 script = ExtResource("2_38n63")
-current_age = null
-age_threshold = null
-next_scene = ExtResource("3_es10k")
