@@ -8,7 +8,7 @@ extends Control
 
 func _ready():
 	# Connect to the time_updated signal from the TimeSystem
-	var time_system = $"../TimeSystem"
+	var time_system = $"../time_system"
 	if time_system.connected("time_updated", self, "_on_time_updated"):
 		print("Successfully connected to time_updated signal.")
 	else:

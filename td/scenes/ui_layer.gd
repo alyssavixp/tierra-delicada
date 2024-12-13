@@ -1,10 +1,10 @@
 extends CanvasLayer
 
 # Reference to the Global_Data node
-@onready var global_data: Node = $"../global_data"
+@onready var global_data: Node = $"global data"
 
 # Reference to the Label node
-@onready var flower_count_label: Label = $Flower_Count_Label
+@onready var flower_count_label: Label = $"Player/UI Layer/Flower_Count_Label"
 
 #func _ready():
 	#if global_data:

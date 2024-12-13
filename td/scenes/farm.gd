@@ -3,9 +3,9 @@ extends Node
 # References to specific nodes
 @onready var player: CharacterBody2D = $Player
 @onready var soil_layer: TileMapLayer = $soil
-@onready var global_data: Node = $Global_Data
-@onready var time_system: Node = $time_system
-@onready var ui_layer: CanvasLayer = $CanvasLayer
+@onready var global_data: Node = $"global data"
+@onready var time_system: Node = $Player/time_system
+@onready var ui_layer: CanvasLayer = $"Player/UI Layer"
 
 func _ready():
 	# Connect the signal from the TimeSystem to this script

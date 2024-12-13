@@ -51,6 +51,5 @@ func _transition_to_stage(stage: int):
 	get_parent().add_child(instance)
 	queue_free()
 
-
-func _on_soil_changed() -> void:
-	pass # Replace with function body.
+#func _on_soil_changed() -> void:
+#	pass # Replace with function body.

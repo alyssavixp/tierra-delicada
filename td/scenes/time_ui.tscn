@@ -39,14 +39,12 @@ text = "999
 "
 label_settings = ExtResource("2_t0iri")
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Sun" type="Sprite2D" parent="DayControl"]
 position = Vector2(25, 8)
 texture = ExtResource("3_u6w4j")
 region_enabled = true
 region_rect = Rect2(47.9725, 0.142339, 16.0953, 15.6544)
-metadata/_edit_lock_ = true
 
 [node name="ClockBG" type="NinePatchRect" parent="DayControl"]
 layout_mode = 0
@@ -90,7 +88,6 @@ offset_right = 60.0
 offset_bottom = 23.0
 text = ":"
 label_settings = ExtResource("2_t0iri")
-metadata/_edit_lock_ = true
 
 [node name="space2" type="Label" parent="DayControl/ClockBG/ClockControl"]
 layout_mode = 0
@@ -99,7 +96,6 @@ offset_right = 84.0
 offset_bottom = 23.0
 text = ":"
 label_settings = ExtResource("2_t0iri")
-metadata/_edit_lock_ = true
 
 [node name="minutes" type="Label" parent="DayControl/ClockBG/ClockControl"]
 layout_mode = 0
@@ -108,7 +104,6 @@ offset_right = 80.0
 offset_bottom = 20.0
 text = "59"
 label_settings = ExtResource("2_t0iri")
-metadata/_edit_lock_ = true
 
 [node name="seconds" type="Label" parent="DayControl/ClockBG/ClockControl"]
 layout_mode = 0
@@ -117,11 +112,9 @@ offset_right = 103.0
 offset_bottom = 23.0
 text = "59"
 label_settings = ExtResource("2_t0iri")
-metadata/_edit_lock_ = true
 
 [node name="hourglass" type="Sprite2D" parent="DayControl/ClockBG/ClockControl"]
 position = Vector2(28, 11)
 texture = ExtResource("3_u6w4j")
 region_enabled = true
 region_rect = Rect2(33.1168, 0, 13.909, 15.0861)
-metadata/_edit_lock_ = true

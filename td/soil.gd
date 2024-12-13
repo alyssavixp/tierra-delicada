@@ -8,7 +8,7 @@ extends TileMapLayer
 	preload("res://Objects/Farming Crops/rose_growth_4.tscn"),
 	preload("res://Objects/Farming Crops/rose_growth_harvest.tscn")
 ]
-@onready var time_system = $"../TimeSystem"
+@onready var time_system = $"../Player/time_system"
 
 # Metadata for soil tiles
 var soil_states = []  # Use an array to store states (e.g., is_empty)
@@ -35,18 +35,18 @@ func _input(event):
 			will_plant = false
 			prints(local_position, mouse_position)
 
-func _on_time_updated(_date_time: Dictionary):
+#func _on_time_updated(_date_time: Dictionary):
 	# Handle time updates to advance plant growth
-	for tile_pos in growth_progress.keys():
-		var _current_stage = growth_progress[tile_pos]
+	#for tile_pos in growth_progress.keys():
+		#var _current_stage = growth_progress[tile_pos]
 				# Replace the tile with the next growth scene
-		_replace_tile_with_growth_scene(tile_pos, _current_stage)
+		#_replace_tile_with_growth_scene(tile_pos, _current_stage)
 
 ## Check if the tile has a plant and advance its growth
-		#if !soil_states[_get_tile_index(tile_pos, _current_stage)] and _current_stage < growth_scenes.size() - 1:
-			## For simplicity, advance one stage every hour
-			#if _date_time["hours"] % 1 == 0:  # Adjust growth frequency as needed
-				#_current_stage += 1
+		##if !soil_states[_get_tile_index(tile_pos, _current_stage)] and _current_stage < growth_scenes.size() - 1:
+			### For simplicity, advance one stage every hour
+			##if _date_time["hours"] % 1 == 0:  # Adjust growth frequency as needed
+				##_current_stage += 1
 				#growth_progress[tile_pos] = _current_stage
 
 func _on_time_system_time_updated(_date_time: Dictionary) -> void:
