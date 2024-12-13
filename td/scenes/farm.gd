@@ -2,7 +2,7 @@ extends Node
 
 # References to specific nodes
 @onready var player: CharacterBody2D = $Player
-@onready var soil_layer: TileMapLayer = $Soil
+@onready var soil_layer: TileMapLayer = $soil
 @onready var global_data: Node = $Global_Data
 @onready var time_system: Node = $time_system
 @onready var ui_layer: CanvasLayer = $CanvasLayer
@@ -28,7 +28,7 @@ func _on_time_updated(date_time: Dictionary):
 	ui_layer.update_ui(date_time)
 
 	# Find the Soil TileMapLayer using a group
-	var soil_nodes = get_tree().get_nodes_in_group("SoilLayer")
+	var soil_nodes = get_tree().get_nodes_in_group("soil")
 	if soil_nodes.size() > 0:
 		soil_layer = soil_nodes[0]  # Get the first node in the SoilLayer group
 		print("Soil layer found:", soil_layer)
@@ -50,3 +50,5 @@ func _test_player_soil_interaction():
 	if player == null:
 		print("Error: Player is not set.")
 		return
+		
+		
