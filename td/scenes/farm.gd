@@ -4,21 +4,26 @@ extends Node
 @onready var player: CharacterBody2D = $Player
 @onready var soil_layer: TileMapLayer = $Soil
 @onready var global_data: Node = $Global_Data
-@onready var time_system: Node = $TimeSystem  # Add reference to TimeSystem
+@onready var time_system: Node = $time_system
 @onready var ui_layer: CanvasLayer = $CanvasLayer
 
 func _ready():
-	# Connect the time_updated signal from the time system
-	#time_system.connect("time_updated", Callable, "_on_time_updated")
-
+	# Connect the signal from the TimeSystem to this script
+	if time_system:
+		var connected = time_system.connected("time_updated", self, "_on_time_updated")
+		if connected:
+			print("Successfully connected to time_updated signal.")
+		else:
+			print("Failed to connect to time_updated signal.")
+	else:
+		print("Error: TimeSystem node not found.")
+		
 	print("Farm scene initialized.")
 
 func _on_time_updated(date_time: Dictionary):
-	# Debug: Print updated time
+	# Handle the time update here
 	print("Time updated:", date_time)
-
-	# Optional: Update soil growth or UI here
-	# Example: Call a function to update soil growth
+	# Call a function to update soil growth
 	soil_layer.update_growth(date_time)
 	ui_layer.update_ui(date_time)
 
@@ -45,13 +50,3 @@ func _test_player_soil_interaction():
 	if player == null:
 		print("Error: Player is not set.")
 		return
-
-	# Get the player's current global position
-	#var player_x = player.global_position.x
-	#var player_y = player.global_position.y
-
-	# Convert the player's position to tile coordinates in the Soil TileMapLayer
-	#var cell_size_x = soil_layer.cell_size.x
-	#var cell_size_y = soil_layer.cell_size.y
-	#var _tile_x = int(floor(player_x / cell_size_x))
-	#var _tile_y = int(floor(player_y / cell_size_y))

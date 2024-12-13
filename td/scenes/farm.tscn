@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bsk4yta2ey683"]
+[gd_scene load_steps=13 format=4 uid="uid://bsk4yta2ey683"]
 
 [ext_resource type="Script" path="res://scenes/farm.gd" id="1_jhwi8"]
 [ext_resource type="PackedScene" uid="uid://rysqu6k6ukq8" path="res://scenes/water_animation.tscn" id="1_n2unc"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://ce85ufoixltvt" path="res://ui/time_ui.tscn" id="7_sdjww"]
 [ext_resource type="PackedScene" uid="uid://by7y6uoh8isrh" path="res://scenes/global_data.tscn" id="8_rcp01"]
 [ext_resource type="Script" path="res://scenes/global_data.gd" id="9_dgajp"]
-[ext_resource type="Script" path="res://scenes/ui_layer.gd" id="10_y6osa"]
+[ext_resource type="Script" path="res://date_time.gd" id="9_ht1wr"]
 [ext_resource type="PackedScene" uid="uid://trlpvn72l200" path="res://player.tscn" id="11_daw7t"]
+[ext_resource type="PackedScene" uid="uid://c4mo3fm811aup" path="res://scenes/time_system.tscn" id="12_4ve6r"]
 
 [node name="farm" type="Node2D"]
 script = ExtResource("1_jhwi8")
@@ -33,24 +34,15 @@ tile_map_data = PackedByteArray("AAAWAPn/AAAGAAkAAAAWAPr/AAAGAAkAAAAWAPv/AAAGAAk
 tile_set = ExtResource("4_sr6o4")
 script = ExtResource("5_t8d1y")
 
-[node name="Player" parent="." groups=["SoilLayer"] instance=ExtResource("11_daw7t")]
-position = Vector2(328, 168)
-scale = Vector2(2, 2)
+[node name="global data" parent="." instance=ExtResource("8_rcp01")]
+script = ExtResource("9_dgajp")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
+[node name="time_system" parent="." instance=ExtResource("12_4ve6r")]
 
-[node name="TimeGui" parent="Player" instance=ExtResource("7_sdjww")]
-offset_left = -143.0
-offset_top = -80.0
-offset_right = -54.0
-offset_bottom = -16.0
-scale = Vector2(0.369103, 0.4)
+[node name="UI Layer" type="CanvasLayer" parent="."]
+script = ExtResource("9_ht1wr")
 
-[node name="UI Layer" type="CanvasLayer" parent="Player"]
-script = ExtResource("10_y6osa")
-
-[node name="Flower_Count_Label" type="Label" parent="Player/UI Layer"]
+[node name="Flower_Count_Label" type="Label" parent="UI Layer"]
 offset_left = 46.0
 offset_top = 59.0
 offset_right = 86.0
@@ -58,12 +50,29 @@ offset_bottom = 82.0
 scale = Vector2(1.41015, 1.69282)
 size_flags_vertical = 0
 
+[node name="TimeGui" parent="UI Layer" instance=ExtResource("7_sdjww")]
+clip_contents = true
+offset_left = 142.0
+offset_top = 63.0
+offset_right = 231.0
+offset_bottom = 127.0
+scale = Vector2(0.369103, 0.4)
+
+[node name="Player" parent="." groups=["SoilLayer"] instance=ExtResource("11_daw7t")]
+position = Vector2(328, 168)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+
 [node name="RoseSeed" parent="." instance=ExtResource("3_xox8s")]
 position = Vector2(338, 134)
 
-[node name="global data" parent="." instance=ExtResource("8_rcp01")]
-script = ExtResource("9_dgajp")
-
+[connection signal="changed" from="soil" to="RoseSeed/AgeingComponent" method="_on_soil_changed"]
+[connection signal="flower_count_changed" from="global data" to="UI Layer" method="_on_global_data_flower_count_changed"]
+[connection signal="ready" from="global data" to="UI Layer" method="_on_global_data_ready"]
+[connection signal="time_updated" from="time_system" to="soil" method="_on_time_system_time_updated"]
+[connection signal="ready" from="UI Layer" to="global data" method="_on_ui_layer_ready"]
 [connection signal="destination_reached" from="Player" to="soil" method="_on_player_destination_reached"]
 
 [editable path="RoseSeed"]

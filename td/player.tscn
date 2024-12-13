@@ -2428,50 +2428,51 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4rup"]
+radius = 7.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_8suym")
 
 [node name="body" type="AnimatedSprite2D" parent="." groups=["Player", "SoilLayer"]]
 sprite_frames = SubResource("SpriteFrames_ajh8f")
-animation = &"idle_right"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="overalls" type="AnimatedSprite2D" parent="body" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_ng3c4")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="pants" type="AnimatedSprite2D" parent="body/overalls" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_i2eod")
-animation = &"walk_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="shoes" type="AnimatedSprite2D" parent="body/overalls/pants" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_3x1uh")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="blush" type="AnimatedSprite2D" parent="body/overalls/pants/shoes" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_d811u")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="eyes" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_x5trh")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="hair" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_lwfrs")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="hat" type="AnimatedSprite2D" parent="body/overalls/pants/shoes/blush/eyes/hair" groups=["Player"]]
 sprite_frames = SubResource("SpriteFrames_gl3ao")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_k4rup")

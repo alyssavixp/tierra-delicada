@@ -1,27 +1,28 @@
 extends Control
 
-@onready var days_label: Label = $DayControl/days
-@onready var hours_label: Label = $DayControl/ClockBG/ClockControl/hours
-@onready var minutes_label: Label = $DayControl/ClockBG/ClockControl/minutes
-@onready var seconds_label: Label = $DayControl/ClockBG/ClockControl/seconds
+# References to the labels in the UI
+@onready var days_label: Label = $DayControl/Days
+@onready var hours_label: Label = $DayControl/ClockBG/ClockControl/Hours
+@onready var minutes_label: Label = $DayControl/ClockBG/ClockControl/Minutes
+@onready var seconds_label: Label = $DayControl/ClockBG/ClockControl/Seconds
 
 func _ready():
-	# Connect to the time_updated signal
+	# Connect to the time_updated signal from the TimeSystem
 	var time_system = $"../TimeSystem"
-	#time_system.connect("time_updated", Callable, "_on_time_updated")
+	if time_system.connected("time_updated", self, "_on_time_updated"):
+		print("Successfully connected to time_updated signal.")
+	else:
+		print("Failed to connect to time_updated signal.")
 
-#func _on_time_updated(date_time: Dictionary):
-	## Update the UI with the current date and time
-	#days_label.text = str(date_time["days"])
-	#hours_label.text = str(date_time["hours"]).pad_left(2, "0")
-	#minutes_label.text = str(date_time["minutes"]).pad_left(2, "0")
-	#seconds_label.text = str(date_time["seconds"]).pad_left(2, "0")
+func _on_time_updated(date_time: Dictionary) : if date_time.has_all(["days", "hours", "minutes", "seconds"]): 
+	update_label(days_label, date_time["days"], false)
+	update_label(hours_label, date_time["hours"], true)
+	update_label(minutes_label, date_time["minutes"], true)
+	update_label(seconds_label, date_time["seconds"], true)
 
 func add_leading_zero(value: int) -> String:
 	# Returns the value as a string with a leading zero if needed
-	if value < 10:
-		return "0" + str(value)
-	return str(value)
+	return "0" + str(value) if value < 10 else str(value)
 
 func update_label(label: Label, value: int, should_have_zero: bool = true) -> void:
 	# Updates the label text with the formatted value

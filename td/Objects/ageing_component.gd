@@ -11,13 +11,6 @@ signal age_threshold_reached(new_scene, seed_instance, tile_position)
 
 ## Preloaded growth scenes
 @export var growth_scenes: Array = []
-	#preload("res://Objects/Farming Crops/rose_growth_1.tscn"),
-	#preload("res://Objects/Farming Crops/rose_growth_2.tscn"),
-	#preload("res://Objects/Farming Crops/rose_growth_3.tscn"),
-	#preload("res://Objects/Farming Crops/rose_growth_4.tscn"),
-	#preload("res://Objects/Farming Crops/rose_growth_harvest.tscn")
-#]
-
 @export var age_thresholds: Array = [5.0, 10.0, 15.0, 20.0, 25.0]  # Corresponding thresholds for growth stages
 @export var target_tile_position: Vector2 = Vector2.ZERO  # Tile position in the soil layer
 
@@ -57,3 +50,7 @@ func _transition_to_stage(stage: int):
 	#instance.position = position
 	get_parent().add_child(instance)
 	queue_free()
+
+
+func _on_soil_changed() -> void:
+	pass # Replace with function body.
