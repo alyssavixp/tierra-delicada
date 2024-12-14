@@ -2,67 +2,79 @@ extends TileMapLayer
 
 @export var rose_seed: PackedScene
 @export var growth_scenes: Array = [
-	preload("res://Objects/Farming Crops/rose_growth_1.tscn"),
-	preload("res://Objects/Farming Crops/rose_growth_2.tscn"),
-	preload("res://Objects/Farming Crops/rose_growth_3.tscn"),
-	preload("res://Objects/Farming Crops/rose_growth_4.tscn"),
-	preload("res://Objects/Farming Crops/rose_growth_harvest.tscn")
+	preload("res://aging_objects/Farming Crops/rose_growth_1.tscn"),  # First growth stage of the rose
+	preload("res://aging_objects/Farming Crops/rose_growth_2.tscn"),  # Second growth stage of the rose
+	preload("res://aging_objects/Farming Crops/rose_growth_3.tscn"),  # Third growth stage of the rose
+	preload("res://aging_objects/Farming Crops/rose_growth_4.tscn"),  # Fourth growth stage of the rose
+	preload("res://aging_objects/Farming Crops/rose_growth_harvest.tscn")  # Final harvestable stage of the rose
 ]
-@onready var time_system = $"../Player/time_system"
 
 # Metadata for soil tiles
-var soil_states = []  # Use an array to store states (e.g., is_empty)
-var growth_progress = {}  # Dictionary to track growth stages for tiles
-var local_position 
-var will_plant = false
+var soil_states = []  # Array to track the states of each soil tile (true for empty, false for occupied)
+var growth_progress = {}  # Dictionary to track the growth stages for tiles, using tile positions as keys
+var local_position  # Stores the position of the tile to interact with
+var will_plant = false  # Flag indicating whether the player intends to plant a seed
+var growth_timer: Timer = null #timer to manage growth progression
 
 func _ready():
 	# Initialize soil states for each tile
-	for x in range(0, get_used_rect().size.x):
-		for y in range(0, get_used_rect().size.y):
-			soil_states.append(true)  # All soil tiles start as empty
-			growth_progress[Vector2(x, y)] = 0  # Initial growth stage for each tile
+	for x in range(0, get_used_rect().size.x):  # Loop through the x-coordinates of the TileMap
+		for y in range(0, get_used_rect().size.y):  # Loop through the y-coordinates of the TileMap
+			soil_states.append(true)  # Mark each tile as empty at the start
+			growth_progress[Vector2(x, y)] = 0  # Set the initial growth stage for each tile to 0
 
+	# Start a timer to manage growth progression every minute
+	growth_timer = Timer.new()  # Create a new Timer instance
+	growth_timer.wait_time = 60  # Set timer to 60 seconds (1 minute)
+	growth_timer.one_shot = false  # Repeat the timer
+	growth_timer.connect("timeout", Callable(self, "_advance_growth"))  # Corrected connection to the growth function
+	add_child(growth_timer)
+	growth_timer.start()  # Start the timer
+		
 func _input(event):
-	# If the mouse is clicked, set the target position
+	# Handle mouse input for planting seeds
 	if event.is_action_pressed("click"):
-		var mouse_position = get_global_mouse_position()
-		local_position = to_local(mouse_position)
-		var tile = get_cell_tile_data(local_to_map(local_position))
+		var mouse_position = get_global_mouse_position()  # Get the global mouse position
+		local_position = to_local(mouse_position)  # Convert the global position to local tile coordinates
+		var tile = get_cell_tile_data(local_to_map(local_position))  # Get tile data for the clicked position
 		if tile:
-			will_plant = true
+			will_plant = true  # Set the flag to indicate planting is possible
 		else:
-			will_plant = false
-			prints(local_position, mouse_position)
-
-#func _on_time_updated(_date_time: Dictionary):
-	# Handle time updates to advance plant growth
-	#for tile_pos in growth_progress.keys():
-		#var _current_stage = growth_progress[tile_pos]
-				# Replace the tile with the next growth scene
-		#_replace_tile_with_growth_scene(tile_pos, _current_stage)
-
-## Check if the tile has a plant and advance its growth
-		##if !soil_states[_get_tile_index(tile_pos, _current_stage)] and _current_stage < growth_scenes.size() - 1:
-			### For simplicity, advance one stage every hour
-			##if _date_time["hours"] % 1 == 0:  # Adjust growth frequency as needed
-				##_current_stage += 1
-				#growth_progress[tile_pos] = _current_stage
-
-func _on_time_system_time_updated(_date_time: Dictionary) -> void:
-	pass 
+			will_plant = false  # Clear the planting flag
+			prints(local_position, mouse_position)  # Debug output for tile positions
 	
 func _replace_tile_with_growth_scene(tile_pos: Vector2, stage: int):
-	# Remove any existing plant instance and replace it with the new growth stage
-	var seed_instance = growth_scenes[stage].instantiate()
-	seed_instance.global_position = tile_pos #tile_to_map(tile_pos.x, tile_pos.y) + Vector2(16, 16)  # Center the instance
-	add_child(seed_instance)
+	# Replace the tile with the corresponding growth stage scene
+	#Remove any existing instance at the tile position
+	var existing_instance = null
+	for child in get_children():
+		if child.global_position == tile_pos:
+			existing_instance = child
+			break
+	if existing_instance:
+		existing_instance.queue_free()  # Free the previous instance
+	var seed_instance = growth_scenes[stage].instantiate()  # Instantiate the scene for the given growth stage
+	seed_instance.global_position = tile_pos  # Set the position of the new instance to match the tile
+	add_child(seed_instance)  # Add the instance to the scene tree
 
-	if stage == growth_scenes.size() - 1:  # Final stage (harvestable)
-		print("flower at", tile_pos, "is ready for harvest!")
-
+	if stage == growth_scenes.size() - 1:  # Check if this is the final harvestable stage
+		print("flower at", tile_pos, "is ready for harvest!")  # Output a message for the harvestable flower
 
 func _on_player_destination_reached() -> void:
+	# Handle the event when the player reaches the destination
 	if will_plant:
-		_replace_tile_with_growth_scene(local_position, 0)
-	pass # Replace with function body.
+		_replace_tile_with_growth_scene(local_position, 0)  # Replace the tile with the initial growth stage
+	pass # Placeholder for additional functionality
+	
+func _advance_growth():
+	# Advance the growth stage of all tiles every minute
+	for tile_pos in growth_progress.keys():
+		var _current_stage = growth_progress[tile_pos]  # Get the current growth stage of the tile
+		if _current_stage < growth_scenes.size() - 1:  # Check if growth can continue
+			_current_stage += 1  # Increment the growth stage
+			growth_progress[tile_pos] = _current_stage  # Update the growth stage in the dictionary
+			_replace_tile_with_growth_scene(tile_pos, _current_stage)  # Replace the tile with the new growth stage
+
+		# Link the updated growth stage to the corresponding scene from growth_scenes
+		var updated_scene = growth_scenes[_current_stage]  # Get the scene corresponding to the new growth stage
+		print("Tile at", tile_pos, "advanced to stage", _current_stage, "linked to scene:", updated_scene)
