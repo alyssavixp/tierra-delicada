@@ -2,7 +2,7 @@ extends TileMapLayer
 
 @export var rose_seed: PackedScene
 #@export var growth_scenes: Array = [
-	#preload(""),  # First growth stage of the rose
+	#preload(""),  # First growth stage of the tulip
 #]
 
 # Metadata for soil tiles
@@ -10,7 +10,7 @@ extends TileMapLayer
 #var growth_progress = {}  # Dictionary to track the growth stages for tiles, using tile positions as keys
 var local_position  # Stores the position of the tile to interact with
 var will_plant = false  # Flag indicating whether the player intends to plant a seed
-var growth_timer: Timer = null #timer to manage growth progression
+#var growth_timer: Timer = null #timer to manage growth progression
 
 #func _ready():
 	# Initialize soil states for each tile
@@ -28,36 +28,26 @@ var growth_timer: Timer = null #timer to manage growth progression
 	#growth_timer.start()  # Start the timer
 		
 func _input(event):
-	# If the mouse is clicked, set the target position
+	# Mouse input to determine where the player is interacting
 	if event.is_action_pressed("click"):
 		var mouse_position = get_global_mouse_position()
-		local_position = to_local(mouse_position)
-		var tile = get_cell_tile_data(local_to_map(local_position))
+		local_position = to_local(mouse_position) #converting global to local relative to the TileMapLayer
+		var tile = get_cell_tile_data(local_to_map(local_position)) #Retrieve the tile data at the clicked position.
 		if tile:
-			will_plant = true
+			will_plant = true #set flag to true if clicked position is valid
 		else:
 			will_plant = false
-			prints(local_position, mouse_position)
+			prints(local_position, mouse_position) #debugging output to display clicked positions
 	
-#func _replace_tile_with_growth_scene(tile_pos: Vector2, stage: int):
-	## Remove any existing plant instance and replace it with the new growth stage
-	##var seed_instance = growth_scenes[stage].instantiate()
-	#seed_instance.global_position = tile_pos #tile_to_map(tile_pos.x, tile_pos.y) + Vector2(16, 16)  # Center the instance
-	#add_child(seed_instance)
-#
-	##if stage == growth_scenes.size() - 1:  # Final stage (harvestable)
-		##print("flower at", tile_pos, "is ready for harvest!")
-#
-#func _on_player_destination_reached() -> void:
-	#if will_plant:
-		#_replace_tile_with_growth_scene(local_position, 0)
-	#pass # Replace with function body.
-	#
-#func _advance_growth():
-	## Advance the growth stage of all tiles every minute
-	##for tile_pos in growth_progress.keys():
-		#var _current_stage = growth_progress[tile_pos]  # Get the current growth stage of the tile
-		#if _current_stage < growth_scenes.size() - 1:  # Check if growth can continue
-			#_current_stage += 1  # Increment the growth stage
-			#growth_progress[tile_pos] = _current_stage  # Update the growth stage in the dictionary
-			#_replace_tile_with_growth_scene(tile_pos, _current_stage)  # Replace the tile with the new growth stage
+# Placeholder function: Called when the player reaches the destination.
+# This is commented out for now but can be used for future implementation.
+# func _on_player_destination_reached() -> void:
+# 	if will_plant:
+# 		_replace_tile_with_growth_scene(local_position, 0)  # Placeholder for seed planting logic.
+# 	pass  # Placeholder body to be replaced with functionality.
+
+# Interaction Area Proposal:
+# Instead of using a timer or built-in TileMap functionality, I will implement an Area2D node.
+# The Area2D will serve as a generic 'interaction area' that detects if the player enters its region.
+# The idea is to allow specific nodes (e.g., soil, plants) to check whether the player is in an interaction area
+# and decide what to do differently based on that condition.
