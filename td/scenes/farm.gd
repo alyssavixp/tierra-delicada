@@ -1,32 +1,23 @@
 extends Node
 
 # References to specific nodes
-@onready var player: CharacterBody2D = $Player
-@onready var soil_layer: TileMapLayer = $soil
-@onready var global_data: Node = $"global data"
+@onready var player: CharacterBody2D = $Player  # Reference to the Player node in the scene
+@onready var soil_layer: TileMapLayer = $soil  # Reference to the Soil layer in the scene
+@onready var global_data: Node = $"global data"  # Reference to a global data node for shared information
 
 func _ready():
-
-	# Find the Soil TileMapLayer using a group
-	var soil_nodes = get_tree().get_nodes_in_group("soil")
-	if soil_nodes.size() > 0:
-		soil_layer = soil_nodes[0]  # Get the first node in the SoilLayer group
-		print("Soil layer found:", soil_layer)
+	# Called when the node is added to the scene tree.
+	if soil_layer != null:
+		print("Soil layer connected successfully.")  # Debug message for soil layer connection
 	else:
-		print("Error: No soil layer found in the 'SoilLayer' group.")
-		return  # Exit if no Soil layer is found
+		print("Soil layer is missing.")  # Debug message if soil layer is not found
 
-	print("Farm scene initialized.")
-	_test_player_soil_interaction()  # Call the test function for debugging
+	if player != null:
+		print("Player connected successfully.")  # Debug message for player connection
+	else:
+		print("Player is missing.")  # Debug message if player is not found
 
-# Test player interaction with the Soil TileMapLayer
-func _test_player_soil_interaction():
-	# Ensure soil_layer is initialized
-	if soil_layer == null:
-		print("Error: Soil layer is not set.")
-		return
-
-	# Ensure player is initialized
-	if player == null:
-		print("Error: Player is not set.")
-		return
+	if global_data != null:
+		print("Global data connected successfully.")  # Debug message for global data connection
+	else:
+		print("Global data is missing.")  # Debug message if global data is not found

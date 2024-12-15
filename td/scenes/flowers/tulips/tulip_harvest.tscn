@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://d13l6tnc7wprp"]
+[gd_scene load_steps=5 format=3 uid="uid://d13l6tnc7wprp"]
 
-[ext_resource type="Texture2D" uid="uid://dmlsbb0rpdrj" path="res://assets/crops/crops.png" id="1_lepms"]
+[ext_resource type="Texture2D" uid="uid://bkd2dr4y23ugd" path="res://assets/crops/crops.png" id="1_nedk8"]
+[ext_resource type="Script" path="res://scenes/flowers/aging_component.gd" id="2_f2n0f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qub41"]
-atlas = ExtResource("1_lepms")
+atlas = ExtResource("1_nedk8")
 region = Rect2(61.6024, 288.087, 21.4931, 16.0358)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ah5ur"]
 radius = 5.0
 
-[node name="RoseStageHarvest" type="StaticBody2D"]
+[node name="tulip_harvest" type="StaticBody2D"]
 collision_layer = 513
 collision_mask = 0
 
@@ -19,3 +20,6 @@ texture = SubResource("AtlasTexture_qub41")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ah5ur")
+
+[node name="AgingComponent" type="Node" parent="."]
+script = ExtResource("2_f2n0f")

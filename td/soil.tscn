@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://boty6qk5sa8ly"]
 
-[ext_resource type="TileSet" uid="uid://dy2c10mt6tqvs" path="res://scenes/soil.tres" id="1_rs5kx"]
+[ext_resource type="TileSet" uid="uid://dy2c10mt6tqvs" path="res://soil.tres" id="1_rs5kx"]
 [ext_resource type="Script" path="res://soil.gd" id="2_ukel3"]
 
 [node name="soil" type="TileMapLayer" groups=["Player", "SoilLayer"]]
