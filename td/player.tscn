@@ -2478,12 +2478,14 @@ animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 8)
 scale = Vector2(0.8, 1.04)
 shape = SubResource("CircleShape2D_k4rup")
 debug_color = Color(5.29438e-07, 0.625452, 0.520071, 0.42)
 
 [node name="ForwardRay" type="RayCast2D" parent="."]
+visible = false
 scale = Vector2(0.645911, 0.961485)
 target_position = Vector2(0, 24.9614)
 collision_mask = 773
