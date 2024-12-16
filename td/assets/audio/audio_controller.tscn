@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://elw46rbb7v1k"]
+[gd_scene load_steps=3 format=3 uid="uid://elw46rbb7v1k"]
 
-[ext_resource type="AudioStream" uid="uid://jr1umpah1knd" path="res://assets/audio/Grass Footstep Short 1.wav" id="1_ir3y2"]
+[ext_resource type="Script" path="res://assets/audio/audio_controller.gd" id="1_3rwfc"]
+[ext_resource type="AudioStream" uid="uid://jr1umpah1knd" path="res://assets/audio/walk.wav" id="1_ir3y2"]
 
 [node name="audio_controller" type="Node2D"]
+script = ExtResource("1_3rwfc")
 
 [node name="walk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_ir3y2")

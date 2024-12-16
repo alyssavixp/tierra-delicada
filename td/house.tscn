@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://brnidqjlm56i0"]
+[gd_scene load_steps=8 format=4 uid="uid://brnidqjlm56i0"]
 
 [ext_resource type="Texture2D" uid="uid://bxhb0r61lv057" path="res://assets/buildings/buildings.png" id="1_otrpm"]
 [ext_resource type="TileSet" uid="uid://bqlhsprrrikso" path="res://tilesets/house.tres" id="1_vqd8p"]
@@ -16,6 +16,7 @@ atlas = ExtResource("1_otrpm")
 region = Rect2(192, 84, 16, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ywv2l"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -32,6 +33,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdb0q"]
+resource_local_to_scene = true
+size = Vector2(13, 19)
+
 [node name="house" type="Sprite2D"]
 
 [node name="house" type="TileMapLayer" parent="."]
@@ -42,3 +47,11 @@ tile_set = ExtResource("1_vqd8p")
 position = Vector2(38, 65)
 sprite_frames = SubResource("SpriteFrames_ywv2l")
 animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="house/door"]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="house/door/Area2D"]
+position = Vector2(1.5, 4.5)
+shape = SubResource("RectangleShape2D_bdb0q")

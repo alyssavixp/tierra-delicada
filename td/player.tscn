@@ -1,4 +1,4 @@
-[gd_scene load_steps=322 format=3 uid="uid://trlpvn72l200"]
+[gd_scene load_steps=323 format=3 uid="uid://trlpvn72l200"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_8suym"]
 [ext_resource type="Texture2D" uid="uid://ty2cj4cre1nu" path="res://assets/char_model/jump/char2_jump.png" id="2_cc8s1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://xaoxf0m5xceh" path="res://assets/char_model/walk/extra_long_walk.png" id="13_jlev1"]
 [ext_resource type="Texture2D" uid="uid://djog1gda6i31t" path="res://assets/char_model/walk/eyes_walk.png" id="13_y36l3"]
 [ext_resource type="Texture2D" uid="uid://dyfx3mkmjtbq0" path="res://assets/char_model/walk/hat_cowboy_walk.png" id="15_uklmx"]
+[ext_resource type="Script" path="res://forward_ray.gd" id="18_ueqe2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6ry8"]
 atlas = ExtResource("2_cc8s1")
@@ -2428,9 +2429,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k4rup"]
-radius = 7.0
+resource_local_to_scene = true
+radius = 8.39312
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 769
 script = ExtResource("1_8suym")
 
 [node name="body" type="AnimatedSprite2D" parent="." groups=["Player", "SoilLayer"]]
@@ -2474,5 +2478,15 @@ animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 8)
+scale = Vector2(0.8, 1.04)
 shape = SubResource("CircleShape2D_k4rup")
+debug_color = Color(5.29438e-07, 0.625452, 0.520071, 0.42)
+
+[node name="ForwardRay" type="RayCast2D" parent="."]
+scale = Vector2(0.645911, 0.961485)
+target_position = Vector2(0, 24.9614)
+collision_mask = 773
+hit_from_inside = true
+collide_with_areas = true
+script = ExtResource("18_ueqe2")

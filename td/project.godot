@@ -14,6 +14,10 @@ config/name="td"
 run/main_scene="res://scenes/farm.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[autoload]
+
+AudioController="*res://assets/audio/audio_controller.tscn"
+
 [global_group]
 
 SoilLayer=""
@@ -58,7 +62,11 @@ click={
 
 [layer_names]
 
-2d_physics/layer_10="Unbuildable"
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Interactions"
+2d_physics/layer_9="Props"
+2d_physics/layer_10="Doors"
 
 [rendering]
 

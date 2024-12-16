@@ -1,12 +1,11 @@
 extends CharacterBody2D
 
-@export var speed: float = 400  # Movement speed of the player
+@export var speed: float = 300  # Movement speed of the player
 
 # Target position as separate x and y components
 var target_x: float = 0
 var target_y: float = 0
 signal destination_reached
-
 @onready var body: AnimatedSprite2D = $body  # Reference to the main body AnimatedSprite2D
 @onready var body_parts: Array = [
 	$body/overalls,
@@ -17,6 +16,8 @@ signal destination_reached
 	$body/overalls/pants/shoes/blush/eyes/hair,
 	$body/overalls/pants/shoes/blush/eyes/hair/hat
 ]  # Explicitly reference each part under 'body'
+
+var is_walking: bool = false  # State flag to track if the player is walking
 
 func _ready():
 	# Initialize the target position to the player's starting position
@@ -44,16 +45,26 @@ func _physics_process(delta: float) -> void:
 		var direction_y = dy / distance
 		position.x += direction_x * speed * delta
 		position.y += direction_y * speed * delta
-
+		
 		# Update animations based on movement direction
 		_update_animation(direction_x, direction_y)
+		
+		# Start playing the walking sound if not already playing
+		if not is_walking:
+			AudioController.play_walk()
+			is_walking = true
 	else:  # Stop moving and set idle animation
 		_set_idle_animation()
+		if is_walking:
+			AudioController.stop_walk()  # Stop the walking sound
+			is_walking = false  # Update walking state
 		destination_reached.emit()
+		
 
 # Update animations based on the movement direction
 func _update_animation(direction_x: float, direction_y: float):
 	var animation_name = ""
+	AudioController.play_walk()
 	if abs(direction_x) > abs(direction_y):  # Horizontal movement dominates
 		if direction_x > 0:
 			animation_name = "walk_right"
