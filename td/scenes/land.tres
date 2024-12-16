@@ -1,6 +1,61 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b3vfcv5qc7ff4"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://b3vfcv5qc7ff4"]
 
+[ext_resource type="Texture2D" uid="uid://bl1kbdmwegcb6" path="res://assets/tiles/tiles2.png" id="1_uys4p"]
 [ext_resource type="Texture2D" uid="uid://bjsbcq007700j" path="res://assets/tiles/tiles.png" id="1_ygru2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qr4y2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lamq1"]
+texture = ExtResource("1_uys4p")
+1:1/0 = 0
+21:1/0 = 0
+0:27/0 = 0
+0:26/0 = 0
+0:25/0 = 0
+1:25/0 = 0
+2:25/0 = 0
+2:26/0 = 0
+2:27/0 = 0
+1:27/0 = 0
+3:27/0 = 0
+4:27/0 = 0
+5:27/0 = 0
+3:25/0 = 0
+4:25/0 = 0
+6:26/0 = 0
+6:27/0 = 0
+7:26/0 = 0
+7:27/0 = 0
+1:5/0 = 0
+5:3/0 = 0
+6:4/0 = 0
+6:5/0 = 0
+7:6/0 = 0
+6:6/0 = 0
+5:6/0 = 0
+5:5/0 = 0
+5:4/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+7:4/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+9:6/0 = 0
+8:6/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:18/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+3:19/0 = 0
+4:19/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0jsk"]
 texture = ExtResource("1_ygru2")
@@ -1681,4 +1736,7 @@ texture = ExtResource("1_ygru2")
 13:49/0 = 0
 
 [resource]
+physics_layer_0/collision_layer = 7
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_qr4y2")
 sources/2 = SubResource("TileSetAtlasSource_q0jsk")
+sources/1 = SubResource("TileSetAtlasSource_lamq1")
