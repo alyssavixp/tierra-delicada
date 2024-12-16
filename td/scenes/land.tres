@@ -58,6 +58,7 @@ texture = ExtResource("1_uys4p")
 4:19/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0jsk"]
+resource_name = "barrier"
 texture = ExtResource("1_ygru2")
 0:0/0 = 0
 1:0/0 = 0

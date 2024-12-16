@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://elw46rbb7v1k"]
+
+[ext_resource type="AudioStream" uid="uid://jr1umpah1knd" path="res://assets/audio/Grass Footstep Short 1.wav" id="1_ir3y2"]
+
+[node name="audio_controller" type="Node2D"]
+
+[node name="walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_ir3y2")
+pitch_scale = 1.75
